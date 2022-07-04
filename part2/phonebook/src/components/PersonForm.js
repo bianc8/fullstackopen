@@ -1,8 +1,7 @@
 import React from 'react'
 
-const PersonForm = ({onSubmit, name, number, nameChange, numberChange}) => (
+const PersonForm = ({name, number, nameChange, numberChange, onSubmit}) => (
     <form onSubmit={onSubmit}>
-        {console.log( nameChange, numberChange, name, number)}
         <div>
             name: <input value={name} onChange={nameChange} />
         </div>

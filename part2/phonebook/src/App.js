@@ -1,23 +1,7 @@
 import { useState } from 'react'
 import Persons from './components/Persons'
 import Filter from './components/Filter'
-//import PersonForm from './components/PersonForm'
-
-const PersonForm = ({name, number, nameChange, numberChange, onSubmit}) => {
-  return (
-    <form onSubmit={onSubmit}>
-        <div>
-            name: <input value={name} onChange={nameChange} />
-        </div>
-        <div>
-            number: <input value={number} onChange={numberChange} />
-        </div>
-        <div>
-            <button type="submit">add</button>
-        </div>
-    </form>
-  )
-}
+import PersonForm from './components/PersonForm'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -26,22 +10,27 @@ const App = () => {
     { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
     { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
   ]) 
+
   const [filter, setFilter] = useState('')
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewNumber] = useState('')
-  const handleNameChange = (event) => {setNewName(event.target.value)}
-  const handleNumberChange = (event) => {setNewNumber(event.target.value)}  
   const handleFilterChange = (event) => {setFilter(event.target.value)}
+  
+  const [newName, setNewName] = useState('')
+  const handleNameChange = (event) => {setNewName(event.target.value)}
+  
+  const [newNumber, setNewNumber] = useState('')
+  const handleNumberChange = (event) => {setNewNumber(event.target.value)}  
 
   const addPerson = (event) => {
     event.preventDefault()
-    let exists = persons.find(person => person.name === newName) !== undefined
-
-    if (exists) {
-      alert(`${newName} is already added to phonebook`)
-    } else if (newName.length === 0 || newNumber.length === 0) {
+    // check if form has name and number
+    if (newName.length === 0 || newNumber.length === 0) {
       alert("Fill out all fields")
-    } else {
+    }
+    // check existance of same name
+    else if (persons.find(person => person.name === newName) !== undefined) {
+      alert(`${newName} is already added to phonebook`)
+    }
+    else {
       const personObject = {
         name: newName,
         number: newNumber,
@@ -60,10 +49,6 @@ const App = () => {
       <h2>Phonebook</h2>
       <div>
         <Filter
-          name={newName}
-          number={newNumber}
-          nameChange={handleNameChange}
-          numberChange={handleNumberChange}
           onChange={handleFilterChange}
         />
       </div>
