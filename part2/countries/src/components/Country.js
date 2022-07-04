@@ -4,18 +4,23 @@ import axios from 'axios'
 const Country = ({country}) => {
     let [temperature, setTemperature] = useState(0)
     let [image, setImage] = useState("")
+    let [alt, setAlt] = useState("")
     let [wind, setWind] = useState(0)
     
     const api_key = process.env.REACT_APP_OPENWEATHER_API_KEY;
+    const url = `http://api.openweathermap.org/data/2.5/weather?units=metric&lat=${country.latlng[0]}&lon=${country.latlng[1]}&appid=${api_key}`
+
     useEffect(() => {
         axios
-            .get(`http://api.openweathermap.org/data/2.5/weather?units=metric&lat=${country.latlng[0]}&lon=${country.latlng[1]}&appid=${api_key}`)
+            .get(url)
             .then(response => {
                 console.log(response.data)
                 setWind(response.data.wind.speed)
                 setTemperature((response.data.main.temp).toFixed(2))
                 setImage(`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+                setAlt(response.data.weather[0].main)
             })
+     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
     <>
@@ -30,10 +35,10 @@ const Country = ({country}) => {
             ))}
             </ul>
         </div>
-        <img src={country.flags.png} width={200} height={130} />
+        <img src={country.flags.png} alt={"flag of country "+country.name.common} width={200} height={130} />
         <h2>Weather in {country.name.common}</h2>
         <p>temperature {temperature}° Celsius</p>
-        <img src={image} height={100} width={100} />
+        <img src={image} alt={alt} height={100} width={100} />
         <p>wind {wind} m/s</p>
     </>
     )
