@@ -18,36 +18,44 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  
-  const [points, setPoints] = useState(Array(anecdotes.length).fill(0))
+  // votes array == anecdotes votes
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
+  // max value
   const [max, setMax] = useState(0)
+  // max index in anecodtes
   const [maxIndex, setMaxIndex] = useState(0)
 
   const vote = () => {
-    const points_cp = [...points]
-    points_cp[selected] += 1
-    if (points_cp[selected] > max) {
-      setMax(points_cp[selected])
+    // add vote
+    const votes_cp = [...votes]
+    votes_cp[selected] += 1
+    // update max votes
+    if (votes_cp[selected] > max) {
+      setMax(votes_cp[selected])
       setMaxIndex(selected)
     }
-    setPoints(points_cp)
+    // set state
+    setVotes(votes_cp)
   }
+  
+  // generate anecdote randomically 
   const nextAnecdote = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
   }
+  
   return (
     <div>
       <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br />
-      has {points[selected]} votes
+      has {votes[selected]} votes
       <br />
       <Button onClick={vote} text="vote" />
       <Button onClick={nextAnecdote} text="next anecdote" />
       <h1>Anecdote with most votes</h1>
       {anecdotes[maxIndex]}
       <br />
-      has {points[maxIndex]} votes
+      has {votes[maxIndex]} votes
     </div>
   )
 }
