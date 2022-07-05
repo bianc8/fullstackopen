@@ -1,10 +1,9 @@
-import React from 'react'
 import Person from "./Person"
 
-const Persons = ({persons}) => (
+const Persons = ({persons, onClick}) => (
     <>
         {persons.map((person) => 
-            <Person person={person} key={person.id} />
+            <Person person={person} onClick={() => onClick(person.id)} key={person.id} />
         )}
     </>
 )

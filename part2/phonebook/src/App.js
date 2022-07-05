@@ -2,28 +2,25 @@ import { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
-
-import axios from 'axios'
+import personService from './services/persons'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
-
+  const [filter, setFilter] = useState('')
+  const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
+  
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
+    personService
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons)
       })
   }, [])
   
 
-  const [filter, setFilter] = useState('')
   const handleFilterChange = (event) => {setFilter(event.target.value)}
-  
-  const [newName, setNewName] = useState('')
   const handleNameChange = (event) => {setNewName(event.target.value)}
-  
-  const [newNumber, setNewNumber] = useState('')
   const handleNumberChange = (event) => {setNewNumber(event.target.value)}  
 
   const addPerson = (event) => {
@@ -40,14 +37,31 @@ const App = () => {
       const personObject = {
         name: newName,
         number: newNumber,
-        id: persons.length + 1,
       }
-      setPersons(persons.concat(personObject))
-      setNewName('')
-      setNewNumber('')
+      personService
+        .create(personObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
+        })
     }
   }
-  
+  const deletePerson = id => {
+    console.log(`delete person ${id}`)
+    
+    personService
+      .del(id)
+      .then(returnedPerson => {
+        console.log('return person ', returnedPerson)
+        setPersons(persons.filter(p => p.id !== id))
+      })
+      .catch(error => {
+        alert(`the person was already deleted from server`)
+        setPersons(persons.filter(n => n.id !== id))
+      })
+  }
+
   let filteredPersons = persons.filter(person => person.name.indexOf(filter) !== -1)
   
   return (
@@ -69,6 +83,7 @@ const App = () => {
       <h3>Numbers</h3>
       <Persons
         persons={filteredPersons}
+        onClick={deletePerson}
       />
     </div>
   )
