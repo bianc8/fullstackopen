@@ -30,36 +30,55 @@ const App = () => {
       alert("Fill out all fields")
     }
     // check existance of same name
-    else if (persons.find(person => person.name === newName) !== undefined) {
-      alert(`${newName} is already added to phonebook`)
-    }
     else {
-      const personObject = {
-        name: newName,
-        number: newNumber,
+      let find = persons.find(person => person.name === newName)
+      if (find !== undefined) {
+        const personObject = { ...find, number: newNumber }
+        
+        let c = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
+        if (c === true) {
+          personService
+            .update(find.id, personObject)
+            .then(retPerson => {
+              setPersons(persons.map(p => p.id !== find.id ? p : retPerson))
+              setNewName('')
+              setNewNumber('')
+            })
+        }
       }
-      personService
-        .create(personObject)
-        .then(returnedPerson => {
-          setPersons(persons.concat(returnedPerson))
-          setNewName('')
-          setNewNumber('')
-        })
+      else {
+        const personObject = {
+          name: newName,
+          number: newNumber,
+        }
+        personService
+          .create(personObject)
+          .then(returnedPerson => {
+            setPersons(persons.concat(returnedPerson))
+            setNewName('')
+            setNewNumber('')
+          })
+      }
     }
   }
   const deletePerson = id => {
     console.log(`delete person ${id}`)
-    
     personService
-      .del(id)
-      .then(returnedPerson => {
-        console.log('return person ', returnedPerson)
-        setPersons(persons.filter(p => p.id !== id))
-      })
-      .catch(error => {
-        alert(`the person was already deleted from server`)
-        setPersons(persons.filter(n => n.id !== id))
-      })
+    .get(id)
+    .then(person => {
+      let c = window.confirm(`Delete ${person.name}`)
+      if (c === true) {
+        personService
+          .del(id)
+          .then(returnedPerson => {
+            setPersons(persons.filter(p => p.id !== id))
+          })
+          .catch(error => {
+            alert(`the person was already deleted from server`)
+            setPersons(persons.filter(n => n.id !== id))
+          })
+      }
+    })
   }
 
   let filteredPersons = persons.filter(person => person.name.indexOf(filter) !== -1)
