@@ -63,22 +63,21 @@ const App = () => {
   }
   const deletePerson = id => {
     console.log(`delete person ${id}`)
-    personService
-    .get(id)
-    .then(person => {
-      let c = window.confirm(`Delete ${person.name}`)
-      if (c === true) {
-        personService
-          .del(id)
-          .then(returnedPerson => {
-            setPersons(persons.filter(p => p.id !== id))
-          })
-          .catch(error => {
-            alert(`the person was already deleted from server`)
-            setPersons(persons.filter(n => n.id !== id))
-          })
-      }
-    })
+    let find = persons.find(p => p.id === id)
+    
+    let c = window.confirm(`Delete ${find.name}`)
+    if (c === true) {
+      personService
+        .del(id)
+        .then(returnedPerson => {
+          console.log('deleted person', returnedPerson)
+          setPersons(persons.filter(p => p.id !== id))
+        })
+        .catch(error => {
+          alert(`the person was already deleted from server`)
+          setPersons(persons.filter(n => n.id !== id))
+        })
+    }
   }
 
   let filteredPersons = persons.filter(person => person.name.indexOf(filter) !== -1)
