@@ -12,35 +12,34 @@ const Country = ({country}) => {
 
     useEffect(() => {
         axios
-            .get(url)
-            .then(response => {
-                console.log(response.data)
-                setWind(response.data.wind.speed)
-                setTemperature((response.data.main.temp).toFixed(2))
-                setImage(`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
-                setAlt(response.data.weather[0].main)
-            })
+        .get(url)
+        .then(response => {
+            setWind(response.data.wind.speed)
+            setTemperature((response.data.main.temp).toFixed(2))
+            setImage(`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+            setAlt(response.data.weather[0].main)
+        })
      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
-    <>
-        <h2>{country.name.common}</h2>
-        <p>capital {country.capital[0]}</p>
-        <p>area {country.area}</p>
-        <h2>languages:</h2>
-        <div>
-            <ul>
-            {Object.values(country.languages).map(lang => (
-                <li key={lang}>{lang}</li>
-            ))}
-            </ul>
-        </div>
-        <img src={country.flags.png} alt={"flag of country "+country.name.common} width={200} height={130} />
-        <h2>Weather in {country.name.common}</h2>
-        <p>temperature {temperature}° Celsius</p>
-        <img src={image} alt={alt} height={100} width={100} />
-        <p>wind {wind} m/s</p>
-    </>
+        <>
+            <h2>{country.name.common}</h2>
+            <p>capital {country.capital[0]}</p>
+            <p>area {country.area}</p>
+            <h2>languages:</h2>
+            <div>
+                <ul>
+                {Object.values(country.languages).map(lang => (
+                    <li key={lang}>{lang}</li>
+                ))}
+                </ul>
+            </div>
+            <img src={country.flags.png} alt={"flag of country "+country.name.common} width={200} height={130} />
+            <h2>Weather in {country.name.common}</h2>
+            <p>temperature {temperature}° Celsius</p>
+            <img src={image} alt={alt} height={100} width={100} />
+            <p>wind {wind} m/s</p>
+        </>
     )
 }
 export default Country

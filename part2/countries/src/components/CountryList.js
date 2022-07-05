@@ -6,15 +6,13 @@ const CountryList = ({country}) => {
     const handleClick = () => setShow(!show)
     
     return (
-        <>
-            <li key={country.name.common}>
-                {country.name.common}
-                <button onClick={handleClick}>
-                    {show ? "hide" : "show"}
-                </button>
-                {show ? <Country country={country} /> : <></>}
-            </li>
-        </>
+        <li key={country.name.common}>
+            {country.name.common}
+            <button onClick={handleClick}>
+                {show ? "hide" : "show"}
+            </button>
+            {show ? <Country country={country} /> : <></>}
+        </li>
     )
 }
 
