@@ -5,6 +5,8 @@ import Country from './components/Country'
 
 const App = () => {
   const [countries, setCountries] = useState([]) 
+  const [filter, setFilter] = useState('')
+  const handleFilterChange = (event) => {setFilter(event.target.value)}  
 
   useEffect(() => {
     axios
@@ -15,8 +17,6 @@ const App = () => {
   }, [])
   
 
-  const [filter, setFilter] = useState('')
-  const handleFilterChange = (event) => {setFilter(event.target.value)}  
   let filteredCountries = countries.filter(country => country.name.common.toUpperCase().indexOf(filter.toUpperCase()) !== -1)
   
   return (
