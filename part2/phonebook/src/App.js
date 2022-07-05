@@ -38,11 +38,12 @@ const App = () => {
       let find = persons.find(person => person.name === newName)
       if (find !== undefined) {
         const personObject = { ...find, number: newNumber }
-        
         let c = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
+        // update the already existing person
         if (c === true) {
           personService
             .update(find.id, personObject)
+            // if the update is successfull
             .then(returnedPerson => {
               setPersons(persons.map(p => p.id !== find.id ? p : returnedPerson))
               setNewName('')
@@ -54,6 +55,7 @@ const App = () => {
                 setNotificationType(null)
               }, 5000)
             })
+            // if the update fails
             .catch(error => {
               setNotificationMessage(`Information of ${find.name} has already been removed from server`)
               setNotificationType("error")
@@ -65,6 +67,7 @@ const App = () => {
             })
         }
       }
+      // else the person must be created
       else {
         const personObject = {
           name: newName,
@@ -72,6 +75,7 @@ const App = () => {
         }
         personService
           .create(personObject)
+          // create successfull
           .then(returnedPerson => {
             setPersons(persons.concat(returnedPerson))
             setNewName('')
@@ -83,19 +87,29 @@ const App = () => {
               setNotificationType(null)
             }, 5000)
           })
+          // create failed
+          .catch(error => {
+            setNotificationMessage(`There was an error on the creation of ${newName}, retry again`)
+            setNotificationType("error")
+            setTimeout(() => {
+              setNotificationMessage(null)
+              setNotificationType(null)
+            }, 5000)
+          })
       }
     }
   }
   const deletePerson = id => {
     let find = persons.find(p => p.id === id)
-    
-    let c = window.confirm(`Delete ${find.name}`)
+    let c = window.confirm(`Delete ${find.name}?`)
     if (c === true) {
       personService
-        .del(id)
+        .deletePerson(id)
+        // delete successfull
         .then(returnedPerson => {
           setPersons(persons.filter(p => p.id !== id))
         })
+        // delete fails
         .catch(error => {
           setNotificationMessage(`The person ${find.name} was already removed from server`)
           setNotificationType("error")
