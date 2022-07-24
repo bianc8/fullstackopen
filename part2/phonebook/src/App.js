@@ -89,7 +89,14 @@ const App = () => {
           })
           // create failed
           .catch(error => {
-            setNotificationMessage(`There was an error on the creation of ${newName}, retry again`)
+            console.log(error.response)
+            if (error.response.data.error.startsWith("Person validation failed: name")) {
+              setNotificationMessage("Insert a name that has more than three characters")
+            } else if (error.response.data.error.startsWith("Person validation failed: number")) {
+              setNotificationMessage("Insert a valid number, at least 8 characters, valid numbers are: 03-123456, 039-12345")
+            } else {
+              setNotificationMessage(`There was an error on the creation of ${newName}, retry again`)
+            }
             setNotificationType("error")
             setTimeout(() => {
               setNotificationMessage(null)
