@@ -15,7 +15,7 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('') 
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
@@ -50,13 +50,13 @@ const App = () => {
   const toggleImportanceOf = id => {
     const note = notes.find(n => n.id === id)
     const changedNote = { ...note, important: !note.important }
-  
+
     noteService
       .update(id, changedNote)
       .then(returnedNote => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       })
-      .catch(error => {
+      .catch(() => {
         setErrorMessage(`Note '${note.content}' was already removed from server`)
         setTimeout(() => {
           setErrorMessage(null)
@@ -71,7 +71,7 @@ const App = () => {
       const user = await loginService.login({
         username, password,
       })
-      
+
       window.localStorage.setItem(
         'loggedNoteappUser', JSON.stringify(user)
       )
@@ -110,14 +110,14 @@ const App = () => {
           </Togglable>
         </div>
       }
-      
+
       <div>
         <button onClick={() => setShowAll(!showAll)}>
           show {showAll ? 'important' : 'all' }
         </button>
-      </div>   
+      </div>
       <ul>
-        {notesToShow.map(note => 
+        {notesToShow.map(note =>
           <Note
             key={note.id}
             note={note}
