@@ -2,8 +2,8 @@
 
 Analyze and comment network requests between browser and server in:
 
-- New Note example app
+- New Note example **AJAX** app
 
-- Single Page App example
+- Single Page App (**SPA**) example
 
 - New Note in a Single Page App example
