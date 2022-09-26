@@ -1,0 +1,38 @@
+### Get all persons
+GET http://localhost:3001/api/persons
+
+### Get single person Jesus
+GET http://localhost:3001/api/persons/62cdbf667aa48be1404ecb72
+
+### DELETE Not existing person
+DELETE http://localhost:3001/api/persons/62cdbdfba5feef008ca9a826
+
+### POST
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+  "name": "Anna Justin",
+  "number": "39-3222339"
+}
+
+### Repeat prev POST to get 'duplicate name' error
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+  "name": "Anna Justin",
+  "number": "39-3222339"
+}
+
+### DELETE Anna Justin, use previous POST response id
+DELETE http://localhost:3001/api/persons/633185028cd2831db6a1e41a
+
+
+### POST error, missing param 'number'
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+  "name": "Brandon Lee"
+}
