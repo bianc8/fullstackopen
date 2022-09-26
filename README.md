@@ -19,8 +19,6 @@
 
 ## Part 0 - Fundamentals of Web Apps
 
-[Part 0 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part0)
-
 ### Lessons  <!-- omit in toc -->
 
 - Learn the fundamentals of web apps, http status codes, and how to use the Chrome Developer Tools.
@@ -30,11 +28,11 @@
 
 ### Exercises <!-- omit in toc -->
 
+[Part 0 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part0)
+
 - [Analyze the requests made by a web app AJAX and SPA versions](https://github.com/enricBiancott0/fullstackopen/tree/main/part0)
 
 ## Part 1 - Introduction to React
-
-[Part 1 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part1)
 
 ### Lessons  <!-- omit in toc -->
 
@@ -47,13 +45,13 @@
 
 ### Exercises <!-- omit in toc -->
 
+[Part 1 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part1)
+
 - [Course Information: Display information about a course](https://github.com/enricBiancott0/fullstackopen/tree/main/part1/courseinfo)
 - [Unicafe: Collect feedback from customer](https://github.com/enricBiancott0/fullstackopen/tree/main/part1/unicafe)
 - [Anecdotes: Display random anecdotes and submit votes](https://github.com/enricBiancott0/fullstackopen/tree/main/part1/anecdotes)
 
 ## Part 2 - Communicating with server
-
-[Part 2 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part2)
 
 ### Lessons  <!-- omit in toc -->
 
@@ -65,13 +63,13 @@
 
 ### Exercises <!-- omit in toc -->
 
+[Part 2 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part2)
+
 - [Course Information Update](https://github.com/enricBiancott0/fullstackopen/tree/main/part2/courseinfo)
 - [Countries: Display information about countries](https://github.com/enricBiancott0/fullstackopen/tree/main/part2/countries)
 - [Phonebook: Display a phonebook](https://github.com/enricBiancott0/fullstackopen/tree/main/part2/phonebook)
 
 ## Part 3 - Programming a server with NodeJS and Express
-
-[Part 3 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part3)
 
 ### Lessons  <!-- omit in toc -->
 
@@ -85,11 +83,11 @@
 
 ### Exercise <!-- omit in toc -->
 
+[Part 3 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part3)
+
 - [Phonebook Backend: Create a backend for the phonebook app](https://github.com/enricBiancott0/fullstackopen/tree/main/part3)
 
 ## Part 4 - Testing Express servers, user administration
-
-[Part 4 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part4)
 
 ### Lessons  <!-- omit in toc -->
 
@@ -101,11 +99,11 @@
 
 ### Exercises <!-- omit in toc -->
 
+[Part 4 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part4)
+
 - [Blog List: Create a blog list app](https://github.com/enricBiancott0/fullstackopen/tree/main/part4)
 
 ## Part 5 - Testing React apps
-
-[Part 5 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part5)
 
 ### Lessons  <!-- omit in toc -->
 
@@ -117,11 +115,11 @@
 
 ### Exercises <!-- omit in toc -->
 
+[Part 5 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part5)
+
 - [Blog List Frontend: Create a frontend for the blog list app](https://github.com/enricBiancott0/fullstackopen/tree/main/part5)
 
 ## Part 6 - State management with Redux
-
-[Part 6 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part6)
 
 ### Lessons  <!-- omit in toc -->
 
@@ -134,6 +132,8 @@
 - Connect (Useful when mantaining older projects)
 
 ### Exercises <!-- omit in toc -->
+
+[Part 6 Github Link](https://github.com/enricBiancott0/fullstackopen/tree/main/part6)
 
 - [Unicafe Redux: Create a Redux version of the Unicafe app](https://github.com/enricBiancott0/fullstackopen/tree/main/part6/unicafe-redux)
 - [Anecdotes Redux: Create a Redux version of the Anecdotes app](https://github.com/enricBiancott0/fullstackopen/tree/main/part6/anecdotes-redux)
