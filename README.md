@@ -143,6 +143,11 @@
 
 ### Lessons  <!-- omit in toc -->
 
+- React Router
+- Custom Hooks
+- Add CSS styles to React app
+- Learn how Webpack works
+- Class components, Miscellaneous
 
 ### Exercises <!-- omit in toc -->
 
