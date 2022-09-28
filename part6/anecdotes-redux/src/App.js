@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeAnecdotes())
-  }, [dispatch])  // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dispatch])
 
   return (
     <div>
