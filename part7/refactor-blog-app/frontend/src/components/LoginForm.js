@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { login } from '../reducers/loginReducer'
 
-import { Container, Title, Button, TextInput } from '@mantine/core'
+import { Container, Title, Button, TextInput, Text, Group } from '@mantine/core'
 import { useForm } from '@mantine/form'
 
 const LoginForm = () => {
@@ -31,6 +31,10 @@ const LoginForm = () => {
           login
         </Button>
       </form>
+      <Group mt="lg">
+        <Text color="red" weight={500}>Tip</Text>
+        <Text>Try with username: "root", password: "root"</Text>
+      </Group>
     </Container>
   )
 }
