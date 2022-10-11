@@ -38,6 +38,16 @@ const typeDefs = gql`
     id: ID!
   }
 
+  enum YesNo {
+    YES
+    NO
+  }
+  type Query {
+    personCount: Int!
+    allPersons(phone: YesNo): [Person!]!
+    findPerson(name: String!): Person
+  }
+  
   type Mutation {
     addPerson(
       name: String!
@@ -49,16 +59,6 @@ const typeDefs = gql`
       name: String!
       phone: String!
     ): Person
-  }
-
-  enum YesNo {
-    YES
-    NO
-  }
-  type Query {
-    personCount: Int!
-    allPersons(phone: YesNo): [Person!]!
-    findPerson(name: String!): Person
   }
 `
 
