@@ -132,14 +132,13 @@ const resolvers = {
       }
       return books.filter(book => book.author === args.author && book.genres.includes(args.genre))
     },
-    allAuthors: (root, args) => {
-      return authors.map(author => {
-        return {
-          ...author,
-          bookCount: books.filter(book => book.author === author.name).length
-        }
-      })
-    }
+    allAuthors: (root, args) => authors
+  },
+  Author: {
+    bookCount: (root) => books.filter(book => book.author === root.name).length
+  },
+  Book: {
+    author: (root) => authors.find(author => author.name === root.author)
   },
   Mutation: {
     addBook: (root, args) => {
