@@ -97,9 +97,8 @@ const resolvers = {
     },
   },
   Mutation: {
-    addPerson: async (root, args, context) => {
+    addPerson: async (root, args, { currentUser }) => {
       const person = new Person({ ...args })
-      const currentUser = context.currentUser
       if (!currentUser) {
         throw new AuthenticationError("not authenticated")
       }
@@ -109,9 +108,7 @@ const resolvers = {
         currentUser.friends = currentUser.friends.concat(person)
         await currentUser.save()
       } catch (error) {
-        throw new UserInputError(error.message, {
-          invalidArgs: args,
-        })
+        throw new UserInputError(error.message, { invalidArgs: args, })
       }
   
       return person
@@ -141,7 +138,7 @@ const resolvers = {
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username })
   
-      if ( !user || args.password !== 'secret' ) {
+      if (!user || args.password !== 'secret') {
         throw new UserInputError("wrong credentials")
       }
   
@@ -153,7 +150,7 @@ const resolvers = {
       return { value: jwt.sign(userForToken, process.env.JWT_SECRET) }
     },
     addAsFriend: async (root, args, { currentUser }) => {
-      const isFriend = (person) => 
+      const isFriend = (person) =>  
         currentUser.friends.map(f => f._id.toString()).includes(person._id.toString())
   
       if (!currentUser) {
@@ -166,7 +163,6 @@ const resolvers = {
       }
   
       await currentUser.save()
-  
       return currentUser
     },
   },
