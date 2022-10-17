@@ -98,10 +98,10 @@ const resolvers = {
   },
   Mutation: {
     addPerson: async (root, args, { currentUser }) => {
-      const person = new Person({ ...args })
       if (!currentUser) {
         throw new AuthenticationError("not authenticated")
       }
+      const person = new Person({ ...args })
   
       try {
         await person.save()
@@ -113,7 +113,10 @@ const resolvers = {
   
       return person
     },
-    editNumber: async (root, args) => {
+    editNumber: async (root, args, { currentUser }) => {
+      if (!currentUser) {
+        throw new AuthenticationError("not authenticated")
+      }
       const person = await Person.findOne({ name: args.name })
       person.phone = args.phone
       try {
