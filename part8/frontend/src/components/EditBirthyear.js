@@ -9,7 +9,6 @@ const EditBirthyear = ({ authors }) => {
   const [editAuthor] = useMutation(EDIT_BIRTHYEAR, {
     refetchQueries: [{ query: ALL_AUTHORS }],
     onError: (error) => {
-      console.log("fiocane ci sono errori", error)
       //setError(error.graphQLErrors[0].message)
     }
   })
