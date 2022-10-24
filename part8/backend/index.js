@@ -114,6 +114,7 @@ const resolvers = {
       } catch (error) {
         throw new UserInputError(error.message, { invalidArgs: args, })
       }
+      newBook.author = author
       return newBook
     },
     editAuthor: async (root, args, { currentUser }) => {
