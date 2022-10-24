@@ -9,12 +9,14 @@ const EditBirthyear = ({ authors }) => {
   const [editAuthor] = useMutation(EDIT_BIRTHYEAR, {
     refetchQueries: [{ query: ALL_AUTHORS }],
     onError: (error) => {
+      console.log("fiocane ci sono errori", error)
       //setError(error.graphQLErrors[0].message)
     }
   })
   const submit = (e) => {
     e.preventDefault()
-    editAuthor({ variables: { name, setBornTo: parseInt(born) } })
+
+    editAuthor({ variables: { author: name, setBornTo: parseInt(born) } })
     setName('')
     setBorn('')
   }

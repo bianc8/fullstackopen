@@ -5,7 +5,7 @@ const Authors = ({ show, authors}) => {
     return null
   }
   if (!authors) {
-    return <div>loading...</div>
+    return <div>loading authors...</div>
   }
 
   return (

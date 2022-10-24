@@ -7,8 +7,7 @@ const schema = new mongoose.Schema({
     minlength: 3
   },
   published: {
-    type: Number,
-    required: true
+    type: Number
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
@@ -18,7 +17,6 @@ const schema = new mongoose.Schema({
   genres: [
     {
       type: String,
-      required: true,
       minlength: 3
     },
   ]

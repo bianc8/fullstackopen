@@ -3,7 +3,7 @@ const Books = ({ show, books}) => {
     return null
   }
   if (!books) {
-    return <div>loading...</div>
+    return <div>loading books...</div>
   }
 
   return (

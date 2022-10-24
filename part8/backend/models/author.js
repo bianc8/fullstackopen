@@ -4,15 +4,15 @@ const schema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
     minlength: 3
   },
   born: {
-    type: Number,
-    required: true
+    type: Number
   },
   bookCount: {
     type: Number,
-    required: true
+    default: 0
   }
 })
 
