@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import patientRouter from './routes/patients';
+
 const app = express();
 
 app.use(express.json());
@@ -13,15 +15,8 @@ app.get('/api/ping', (_req, res) => {
   res.send('pong');
 });
 
-app.get('/api/patients', (_req, res) => {
-  console.log('requested patients');
-  res.send([]);
-});
-
-app.post('/api/patients', (req, res) => {
-  console.log('add new patient');
-  res.send({});
-});
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+app.use('/api/patients', patientRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
