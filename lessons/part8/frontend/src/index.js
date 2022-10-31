@@ -1,4 +1,5 @@
-import { ReactDOM } from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App'
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, split } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'

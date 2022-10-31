@@ -5,8 +5,6 @@ const User = require('./models/user')
 const { PubSub } = require('graphql-subscriptions')
 const pubsub = new PubSub()
 
-const JWT_SECRET = process.env.JWT_SECRET
-
 const resolvers = {
   Query: {
     personCount: async () => Person.collection.countDocuments(),
@@ -87,7 +85,7 @@ const resolvers = {
         id: user._id,
       }
 
-      return { value: jwt.sign(userForToken, JWT_SECRET) }
+      return { value: jwt.sign(userForToken, process.env.JWT_SECRET) }
     },
     addAsFriend: async (root, args, { currentUser }) => {
       const nonFriendAlready = (person) =>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery, useMutation, useSubscription, useApolloClient } from '@apollo/client'
+import { useQuery, useSubscription, useApolloClient } from '@apollo/client'
 
 import LoginForm from './components/LoginForm'
 import Persons from './components/Persons'

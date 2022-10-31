@@ -9,6 +9,20 @@ export const ALL_AUTHORS = gql`
     }
   }
 `
+
+const BOOK_DETAILS = gql`
+  fragment BookDetails on Book {
+    id
+    title
+    published
+    genres
+    author {
+      name
+      born
+      bookCount
+    }
+  }
+`
 export const ALL_BOOKS = gql`
   query {
     allBooks {
@@ -70,12 +84,17 @@ export const ME = gql`
 export const GET_BOOKS_BY_GENRE = gql`
   query getBooksByGenre($genre: String!) {
     allBooks(genre: $genre) {
-      title
-      author {
-        name
-      }
-      published
-      genres
+      ...BookDetails
     }
   }
+  ${BOOK_DETAILS}
+`
+
+export const BOOK_ADDED = gql`
+  subscription {
+    bookAdded {
+      ...BookDetails
+    }
+  }
+${BOOK_DETAILS}
 `

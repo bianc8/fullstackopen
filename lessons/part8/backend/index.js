@@ -1,30 +1,21 @@
 require('dotenv').config()
-const { ApolloServer } = require('apollo-server-express')
-const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
-const { makeExecutableSchema } = require('@graphql-tools/schema')
-const { execute, subscribe } = require('graphql')
-const { WebSocketServer } = require('ws')
-const { useServer } = require('graphql-ws/lib/use/ws')
 const express = require('express')
 const http = require('http')
-
+const { WebSocketServer } = require('ws')
+const { ApolloServer } = require('apollo-server-express')
+const { useServer } = require('graphql-ws/lib/use/ws')
+const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
+const { makeExecutableSchema } = require('@graphql-tools/schema')
 const jwt = require('jsonwebtoken')
-
-const JWT_SECRET = process.env.JWT_SECRET
-
 const mongoose = require('mongoose')
-
-const User = require('./models/user')
 
 const typeDefs = require('./schema')
 const resolvers = require('./resolvers')
+const User = require('./models/user')
 
-const MONGODB_URI = process.env.MONGODB_URI
-
-console.log('connecting to', MONGODB_URI)
-
+console.log('connecting to', process.env.MONGODB_URI)
 mongoose
-  .connect(MONGODB_URI)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('connected to MongoDB')
   })
@@ -51,7 +42,7 @@ const start = async () => {
     context: async ({ req }) => {
       const auth = req ? req.headers.authorization : null
       if (auth && auth.toLowerCase().startsWith('bearer ')) {
-        const decodedToken = jwt.verify(auth.substring(7), JWT_SECRET)
+        const decodedToken = jwt.verify(auth.substring(7), process.env.JWT_SECRET)
         const currentUser = await User.findById(decodedToken.id).populate(
           'friends'
         )

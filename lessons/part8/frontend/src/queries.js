@@ -78,6 +78,5 @@ export const PERSON_ADDED = gql`
       ...PersonDetails
     }
   }
-  
 ${PERSON_DETAILS}
 `
