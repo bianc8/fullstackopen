@@ -29,7 +29,8 @@ const calculateExercise = (exerciseHours: Array<number>, target: number): Result
   }
 };
 
-const target = Number(process.argv[2]);
-const exerciseHours = process.argv.slice(3).map(hours => Number(hours));
+//const target = Number(process.argv[2]);
+//const exerciseHours = process.argv.slice(3).map(hours => Number(hours));
+//console.log(calculateExercise(exerciseHours, target));
 
-console.log(calculateExercise(exerciseHours, target));
+export { calculateExercise };
