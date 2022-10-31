@@ -1,15 +1,15 @@
 import express from 'express';
-import patientService from '../services/patientService';
+import diagnoseService from '../services/diagnoseService';
 
 const router = express.Router();
 
 router.get('/', (_req, res) => {
-  res.send(patientService.getNonSensitiveEntries());
+  res.send(diagnoseService.getEntries());
 });
 
 
 router.post('/', (_req, res) => {
-  console.log('add new patient');
+  console.log('add new diagnose');
   res.send({});
 });
 
