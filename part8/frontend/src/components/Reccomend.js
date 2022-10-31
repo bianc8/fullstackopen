@@ -7,11 +7,7 @@ const Reccomend = ({ show, books, user }) => {
     if (!user || !books) {
       return
     }
-    
-    let x = books.filter(b => b.genres.includes(user.favouriteGenre))
-    console.log(x)
-    setFavouriteBooks(x)
-    
+    setFavouriteBooks(books.filter(b => b.genres.includes(user.favouriteGenre)))
   }, [books, user])
 
   if (!show) {
@@ -34,7 +30,7 @@ const Reccomend = ({ show, books, user }) => {
             <th>Genres</th>
           </tr>
           {favouriteBooks.map(b => (
-            <tr>
+            <tr key={b.title}>
               <td>{b.title}</td>
               <td>{b.author.name}</td>
               <td>{b.published}</td>

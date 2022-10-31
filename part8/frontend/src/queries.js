@@ -23,17 +23,14 @@ const BOOK_DETAILS = gql`
     }
   }
 `
+
 export const ALL_BOOKS = gql`
-  query {
-    allBooks {
-      title
-      author {
-        name
-      }
-      published
-      genres
+  query AllBooks($genre: String) {
+    allBooks(genre: $genre) {
+      ...BookDetails
     }
   }
+  ${BOOK_DETAILS}
 `
 
 
@@ -49,6 +46,11 @@ export const CREATE_BOOK = gql`
       id
       published
       genres
+      author {
+        name
+        born
+        bookCount
+      }
     }
   }
 `
@@ -79,15 +81,6 @@ export const ME = gql`
       favouriteGenre
     }
   }
-`
-
-export const GET_BOOKS_BY_GENRE = gql`
-  query getBooksByGenre($genre: String!) {
-    allBooks(genre: $genre) {
-      ...BookDetails
-    }
-  }
-  ${BOOK_DETAILS}
 `
 
 export const BOOK_ADDED = gql`
