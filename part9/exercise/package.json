@@ -1,0 +1,15 @@
+{
+  "name": "exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "calculateBmi": "ts-node -- src/bmiCalculator.ts",
+    "calculateExercises": "ts-node -- src/exerciseCalculator.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.8"
+  }
+}
