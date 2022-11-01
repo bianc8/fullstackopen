@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import patients from '../../data/patients';
 import { v1 as uuid } from 'uuid';
-import { PatientEntry, NonSensitivePatientEntry, NewPatientEntry } from '../types';
+import { Patient, PublicPatient, NewPatient } from '../types';
 
-const getEntries = (): Array<PatientEntry> => {
+const getEntries = (): Array<Patient> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   return patients;
 };
 
-const getNonSensitiveEntries = (): Array<NonSensitivePatientEntry> => {
+const getNonSensitiveEntries = (): Array<PublicPatient> => {
   return patients.map((p) => ({
     id: p.id,
     name: p.name,
@@ -17,7 +19,7 @@ const getNonSensitiveEntries = (): Array<NonSensitivePatientEntry> => {
   }));
 };
 
-const addPatient = (entry: NewPatientEntry): PatientEntry => {
+const addPatient = (entry: NewPatient): Patient => {
   const newPatient = {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     id: String(uuid()),
@@ -27,8 +29,14 @@ const addPatient = (entry: NewPatientEntry): PatientEntry => {
   return newPatient;
 };
 
+const findById = (id: string): Patient | undefined => {
+  const entry = patients.find((p) => p.id === id);
+  return entry;
+};
+
 export default {
   getEntries,
   getNonSensitiveEntries,
-  addPatient
+  addPatient,
+  findById
 };
