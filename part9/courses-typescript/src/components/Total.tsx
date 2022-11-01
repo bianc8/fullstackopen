@@ -1,9 +1,15 @@
-import { CourseParts, CoursePartBase } from "../App"
+import { CoursePart } from "../types"
 
-const Total = (props: CourseParts) => {
-  const total = props.courseParts.reduce((carry, part: CoursePartBase) => carry + part.exerciseCount, 0);
+interface TotalProps {
+  courseParts: CoursePart[];
+}
+
+const Total = (props: TotalProps) => {
+  const total = props.courseParts.reduce((carry, part: CoursePart) => carry + part.exerciseCount, 0);
   return (
     <div>
+      <hr />
+      <h1>Total</h1>
       <p>
         Number of exercises{" "+total}
       </p>
