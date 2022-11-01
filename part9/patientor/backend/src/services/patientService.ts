@@ -1,5 +1,6 @@
 import patients from '../../data/patients';
-import { PatientEntry, NonSensitivePatientEntry } from '../types';
+import { v1 as uuid } from 'uuid';
+import { PatientEntry, NonSensitivePatientEntry, NewPatientEntry } from '../types';
 
 const getEntries = (): Array<PatientEntry> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -16,12 +17,18 @@ const getNonSensitiveEntries = (): Array<NonSensitivePatientEntry> => {
   }));
 };
 
-const addDiary = () => {
-  return [];
+const addPatient = (entry: NewPatientEntry): PatientEntry => {
+  const newPatient = {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    id: String(uuid()),
+    ...entry,
+  };
+  patients.push(newPatient);
+  return newPatient;
 };
 
 export default {
   getEntries,
   getNonSensitiveEntries,
-  addDiary
+  addPatient
 };
