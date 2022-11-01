@@ -1,7 +1,7 @@
-import { courseParts, coursePartBase } from "../App"
+import { CourseParts, CoursePartBase } from "../App"
 
-const Total = (props: courseParts) => {
-  const total = props.courseParts.reduce((carry, part: coursePartBase) => carry + part.exerciseCount, 0);
+const Total = (props: CourseParts) => {
+  const total = props.courseParts.reduce((carry, part: CoursePartBase) => carry + part.exerciseCount, 0);
   return (
     <div>
       <p>

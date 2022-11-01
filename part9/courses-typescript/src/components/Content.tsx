@@ -1,9 +1,9 @@
-import { courseParts, coursePartBase } from "../App";
+import { CourseParts, CoursePartBase } from "../App";
 
-const Content = (props: courseParts) => {
+const Content = (props: CourseParts) => {
   return (
     <div>
-      {props.courseParts.map((part: coursePartBase) => (
+      {props.courseParts.map((part: CoursePartBase) => (
         <p key={part.name}>{part.name} {part.exerciseCount}</p>
       ))}
     </div>

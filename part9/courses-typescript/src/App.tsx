@@ -2,13 +2,12 @@ import Header from './components/Header';
 import Content from './components/Content';
 import Total from './components/Total';
 
-export interface coursePartBase {
+export interface CoursePartBase {
   name: string;
   exerciseCount: number;
 }
-
-export interface courseParts {
-  courseParts: coursePartBase[];
+export interface CourseParts {
+  courseParts: CoursePartBase[];
 }
 
 
