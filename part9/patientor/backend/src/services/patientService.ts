@@ -16,6 +16,7 @@ const getNonSensitiveEntries = (): Array<PublicPatient> => {
     dateOfBirth: p.dateOfBirth,
     gender: p.gender,
     occupation: p.occupation,
+    entries: p.entries,
   }));
 };
 
