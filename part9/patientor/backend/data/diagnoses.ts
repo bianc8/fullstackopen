@@ -76,4 +76,6 @@ const diagnosesEntries: Array<Diagnoses> = [
   }
 ];
 
+export const diagnosesCodes: Array<Diagnoses['code']> = diagnosesEntries.map(({ code }) => code);
+
 export default diagnosesEntries;

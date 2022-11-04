@@ -35,9 +35,26 @@ const findById = (id: string): Patient | undefined => {
   return entry;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const addEntry = (entry: any, id: string): Patient | undefined => {
+  const newEntry = {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    id: String(uuid()),
+    ...entry,
+  };
+  const patient = patients.find((p) => p.id === id);
+  if (patient) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    patient.entries.push(newEntry);
+    return patient;
+  }
+  return undefined;
+};
+
 export default {
   getEntries,
   getNonSensitiveEntries,
   addPatient,
-  findById
+  findById,
+  addEntry
 };
